@@ -139,6 +139,8 @@
     <Content Include="Scripts\angular-sanitize.js" />
     <Content Include="Scripts\angular-sanitize.min.js" />
     <Content Include="Scripts\angular-scenario.js" />
+    <Content Include="Scripts\angular-signalr-hub.js" />
+    <Content Include="Scripts\angular-signalr-hub.min.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular-ui-router.js" />
@@ -904,6 +906,8 @@
     <Compile Include="App_Start\OwinStartup.cs" />
     <Compile Include="Controllers\PlanningController.cs" />
     <Compile Include="Hubs\FirstHub.cs" />
+    <Compile Include="Hubs\PokerRoomHub.cs" />
+    <Compile Include="Hubs\RetroRoomHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup>
