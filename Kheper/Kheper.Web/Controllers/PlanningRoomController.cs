@@ -1,16 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
+﻿using System.Web.Http;
+using Kheper.Core.Model;
+using Kheper.Core.Store;
 
 namespace Kheper.Web.Controllers
 {
 	[RoutePrefix("api/planning")]
 	public class PlanningRoomController : ApiController
 	{
-		[Route]
-		[HttpGet]
-		public IEnumerable<string> Get()
+		private readonly IPlanningRoomRepository _repository;
+
+		public PlanningRoomController(IPlanningRoomRepository repository)
 		{
-			return new string[] { "value1", "value2" };
+			_repository = repository;
+		}
+
+		[HttpGet]
+		[Route("{id}")]
+		public PlanningRoom Get(long id)
+		{
+			return _repository.Query(id);
 		}
 	}
 }
