@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Kheper.Core.Api")]
+[assembly: AssemblyTitle("Kheper.DataAccess")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("EPAM Systems")]
-[assembly: AssemblyProduct("Kheper.Core.Api")]
+[assembly: AssemblyProduct("Kheper.DataAccess")]
 [assembly: AssemblyCopyright("Copyright © EPAM Systems 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a277d629-e938-42b1-a847-0cc30da84d3c")]
+[assembly: Guid("f344c76b-1cc1-40e2-961b-b34da19033f2")]
 
 // Version information for an assembly consists of the following four values:
 //

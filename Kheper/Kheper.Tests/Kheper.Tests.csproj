@@ -59,10 +59,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kheper.Core.Api\Kheper.Core.Api.csproj">
-      <Project>{01daf9b2-a517-4b8a-b4ed-51c9d30602b3}</Project>
-      <Name>Kheper.Core.Api</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Kheper.Core\Kheper.Core.csproj">
       <Project>{ed410591-132d-41cd-bf5c-51228eb1210b}</Project>
       <Name>Kheper.Core</Name>

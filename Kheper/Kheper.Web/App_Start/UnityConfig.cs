@@ -1,5 +1,5 @@
-﻿using Kheper.Core.Api.Store;
-using Kheper.Core.Store;
+﻿using Kheper.Core.Store;
+using Kheper.DataAccess.InMemory;
 using Microsoft.Practices.Unity;
 
 namespace Kheper.Web

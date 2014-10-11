@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Linq;
-using Kheper.Core.Api.Store;
+using Kheper.Core.Store;
 
-namespace Kheper.Core.Store
+namespace Kheper.DataAccess.InMemory
 {
 	public abstract class GenericInMemoryRepository<TEntity, TId> : IRepository<TEntity, TId> where TEntity : class
 	{

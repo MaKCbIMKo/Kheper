@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Kheper.Core.Api.Model
+namespace Kheper.Core.Model
 {
 	public class VotingSession
 	{

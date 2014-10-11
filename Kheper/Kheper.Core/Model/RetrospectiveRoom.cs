@@ -1,4 +1,4 @@
-﻿namespace Kheper.Core.Api.Model
+﻿namespace Kheper.Core.Model
 {
 	public class RetrospectiveRoom
 	{

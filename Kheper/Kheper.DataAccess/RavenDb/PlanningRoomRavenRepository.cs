@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using Kheper.Core.Api.Store;
 using Kheper.Core.Model;
+using Kheper.Core.Store;
 using Raven.Client;
 
-namespace Kheper.Core.Store.RavenDb
+namespace Kheper.DataAccess.RavenDb
 {
     public class PlanningRoomRavenRepository: IPlanningRoomRepository, IDisposable
     {

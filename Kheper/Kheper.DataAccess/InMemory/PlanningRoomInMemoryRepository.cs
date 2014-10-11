@@ -1,7 +1,7 @@
-﻿using Kheper.Core.Api.Model;
-using Kheper.Core.Api.Store;
+﻿using Kheper.Core.Model;
+using Kheper.Core.Store;
 
-namespace Kheper.Core.Store
+namespace Kheper.DataAccess.InMemory
 {
 	public class PlanningRoomInMemoryRepository : GenericInMemoryRepository<PlanningRoom, long>, IPlanningRoomRepository
 	{

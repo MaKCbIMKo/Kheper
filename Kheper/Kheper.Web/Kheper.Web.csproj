@@ -980,9 +980,13 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Kheper.Core.Api\Kheper.Core.Api.csproj">
-      <Project>{01DAF9B2-A517-4B8A-B4ED-51C9D30602B3}</Project>
-      <Name>Kheper.Core.Api</Name>
+    <ProjectReference Include="..\Kheper.Core\Kheper.Core.csproj">
+      <Project>{ED410591-132D-41CD-BF5C-51228EB1210B}</Project>
+      <Name>Kheper.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kheper.DataAccess\Kheper.DataAccess.csproj">
+      <Project>{FB015E48-DEE2-4117-A10C-90DBB0049E82}</Project>
+      <Name>Kheper.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

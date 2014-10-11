@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
-using Kheper.Core.Api.Model;
-using Kheper.Core.Api.Store;
+using Kheper.Core.Model;
+using Kheper.Core.Store;
 
 namespace Kheper.Web.Controllers
 {
