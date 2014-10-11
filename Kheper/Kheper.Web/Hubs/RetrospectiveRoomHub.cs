@@ -5,8 +5,23 @@ using System.Threading.Tasks;
 namespace Kheper.Web.Hubs
 {
 	[HubName("RetrospectiveRoomHub")]
-	public class RetroRoomHub : Hub
+	public class RetrospectiveRoomHub : Hub
 	{
+		public RetrospectiveRoomHub()
+		{
+			
+		}
+
+		public bool Connect(int planningRoomId)
+		{
+			return true;
+		}
+
+		public bool Disconnect(int planningRoomId)
+		{
+			return true;
+		}
+
 		public override Task OnConnected()
 		{
 			return base.OnConnected();

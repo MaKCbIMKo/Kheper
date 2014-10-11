@@ -7,6 +7,21 @@ namespace Kheper.Web.Hubs
 	[HubName("PokerRoomHub")]
 	public class PlanningRoomHub : Hub
 	{
+		public PlanningRoomHub()
+		{
+			
+		}
+
+		public bool Connect(int planningRoomId)
+		{
+			return true;
+		}
+
+		public bool Disconnect(int planningRoomId)
+		{
+			return true;
+		}
+
 		public override Task OnConnected()
 		{
 			return base.OnConnected();
