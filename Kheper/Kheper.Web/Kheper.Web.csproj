@@ -147,6 +147,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\Views\Footer.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -963,7 +964,8 @@
     <Compile Include="Controllers\HomeController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Angular\PlainingPocker\" />
+    <Folder Include="Angular\Controllers\" />
+    <Folder Include="Angular\PlaningPocker\" />
     <Folder Include="Angular\Retrospective\Controllers\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
