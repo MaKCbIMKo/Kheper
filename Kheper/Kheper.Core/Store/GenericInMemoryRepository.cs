@@ -5,7 +5,7 @@ using Kheper.Core.Api.Store;
 
 namespace Kheper.Core.Store
 {
-	public abstract class GenericInMemoryRepository<TEntity,TId> : IRepository<TEntity, TId> where TEntity : class
+	public abstract class GenericInMemoryRepository<TEntity, TId> : IRepository<TEntity, TId> where TEntity : class
 	{
 		private readonly ConcurrentDictionary<string, TEntity> _store = new ConcurrentDictionary<string, TEntity>();
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Kheper.Core.Model;
 
 namespace Kheper.Core.Api.Model
 {
