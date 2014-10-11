@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Kheper.Core.Api.Store;
 using Kheper.Core.Model;
 using Raven.Client;
 
@@ -19,7 +20,7 @@ namespace Kheper.Core.Store.RavenDb
             return _session.Load<PlanningRoom>(id);
         }
 
-        public IQueryable<PlanningRoom> Query(Func<PlanningRoom, bool> predicate)
+        public IQueryable<PlanningRoom> Query()
         {
             return _session.Query<PlanningRoom>();
         }
@@ -32,10 +33,9 @@ namespace Kheper.Core.Store.RavenDb
             return instance;
         }
 
-        public void Delete(long id)
+        public void Delete(PlanningRoom instance)
         {
-            var entity = Query(id);
-            _session.Delete(entity);
+            _session.Delete(instance);
 
             _session.SaveChanges();
         }
