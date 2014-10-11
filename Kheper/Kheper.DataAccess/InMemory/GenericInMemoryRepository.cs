@@ -5,52 +5,60 @@ using Kheper.Core.Store;
 
 namespace Kheper.DataAccess.InMemory
 {
-	public abstract class GenericInMemoryRepository<TEntity, TId> : IRepository<TEntity, TId> where TEntity : class
-	{
-		private readonly ConcurrentDictionary<string, TEntity> _store = new ConcurrentDictionary<string, TEntity>();
+    using Kheper.Core.Util;
 
-		protected string GenerateKey(TId id)
-		{
-			return id.ToString();
-		}
+    public abstract class GenericInMemoryRepository<TEntity, TId> : IRepository<TEntity, TId> where TEntity : class where TId : struct
+    {
+        private readonly ConcurrentDictionary<TId, TEntity> _store = new ConcurrentDictionary<TId, TEntity>();
 
-		protected abstract TId GetId(TEntity instance);
+        protected abstract TId? GetId(TEntity instance);
+        protected abstract void SetId(TEntity instance, TId id);
+        protected abstract TId GenerateId(TEntity instance);
 
-		protected TEntity Clone(TEntity instance)
-		{
-			throw new NotImplementedException();
-		}
+        protected TEntity Clone(TEntity instance)
+        {
+            return Serialization.Clone(instance);
+        }
 
-		public TEntity Query(TId id)
-		{
-			var key = GenerateKey(id);
-			TEntity instance;
-			if (_store.TryGetValue(key, out instance))
-			{
-				return Clone(instance);
-			}
-			else
-			{
-				throw new StoreException("Store does not contain instance of " + typeof(TEntity).Name + " with key " + key);
-			}
-		}
+        public TEntity Query(TId id)
+        {
+            TEntity instance;
+            if (!this._store.TryGetValue(id, out instance))
+            {
+                throw new StoreException("Store does not contain instance of "
+                    + typeof(TEntity).Name + " with key " + id);
+            }
 
-		public IQueryable<TEntity> Query()
-		{
-			return _store.Values.Select(Clone).AsQueryable();
-		}
+            return this.Clone(instance);
+        }
 
-		public TEntity Save(TEntity instance)
-		{
-			string key = GenerateKey(GetId(instance));
-			return Clone(_store.AddOrUpdate(key, instance, (k, i) => i));
-		}
+        public IQueryable<TEntity> Query()
+        {
+            return _store.Values.Select(Clone).AsQueryable();
+        }
 
-		public void Delete(TEntity instance)
-		{
-			var id = GetId(instance);
-			var key = GenerateKey(id);
-			_store.TryRemove(key, out instance);
-		}
-	}
+        public TEntity Save(TEntity instance)
+        {
+            instance = this.Clone(instance);
+            TId? id = GetId(instance);
+            if (!id.HasValue)
+            {
+                id = GenerateId(instance);
+                SetId(instance, id.Value);
+            }
+
+            return Clone(_store.AddOrUpdate(id.Value, instance, (k, i) => i));
+        }
+
+        public void Delete(TEntity instance)
+        {
+            var id = GetId(instance);
+            if (!id.HasValue)
+            {
+                throw new StoreException("Cannot delete instance because it has empty identity");
+            }
+
+            this._store.TryRemove(id.Value, out instance);
+        }
+    }
 }

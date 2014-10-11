@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace Kheper.Core.Model
 {
-	public class VotingSession
+    [Serializable]
+    public class VotingSession
 	{
 		public string Description { get; set; }
 		public DateTimeOffset VotedAt { get; set; }

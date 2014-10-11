@@ -2,12 +2,26 @@
 
 namespace Kheper.Core.Model
 {
-	public class PlanningRoom
-	{
-		public long Id { get; set; }
+    using System;
+    using System.Runtime.Serialization;
 
-		public List<VotingSession> Sessions;
+    [Serializable]
+    [DataContract]
+    public class PlanningRoom
+    {
+        [DataMember]
+        public long Id { get; set; }
 
-		public List<string> Users;
-	}
+        [DataMember]
+        public List<VotingSession> Sessions;
+
+        [DataMember]
+        public List<string> Users;
+
+        public PlanningRoom()
+        {
+            Sessions = new List<VotingSession>();
+            Users = new List<string>();
+        }
+    }
 }

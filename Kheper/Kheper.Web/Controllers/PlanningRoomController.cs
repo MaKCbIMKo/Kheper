@@ -20,5 +20,14 @@ namespace Kheper.Web.Controllers
 		{
 			return _repository.Query(id);
 		}
+
+	    [HttpPost]
+        [Route]
+        public PlanningRoom Start()
+	    {
+	        var room = new PlanningRoom();
+	        room = _repository.Save(room);
+	        return room;
+	    }
 	}
 }
