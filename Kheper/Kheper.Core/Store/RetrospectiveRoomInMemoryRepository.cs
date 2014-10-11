@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Kheper.Core.Api.Model;
+using Kheper.Core.Api.Store;
 
 namespace Kheper.Core.Store
 {
-	class RetrospectiveRoomInMemoryRepository
+	public class RetrospectiveRoomInMemoryRepository : GenericInMemoryRepository<RetrospectiveRoom, long>, IRetrospectiveRoomRepository
 	{
+		protected override long GetId(RetrospectiveRoom instance)
+		{
+			return instance.Id;
+		}
 	}
 }
