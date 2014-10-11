@@ -147,7 +147,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\Routes.js" />
     <Content Include="Angular\Views\Footer.html" />
+    <Content Include="Angular\Views\Layout.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
