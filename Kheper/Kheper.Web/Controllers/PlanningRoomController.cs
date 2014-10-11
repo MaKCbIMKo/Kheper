@@ -4,7 +4,7 @@ using System.Web.Http;
 namespace Kheper.Web.Controllers
 {
 	[RoutePrefix("api/planning")]
-	public class PlanningController : ApiController
+	public class PlanningRoomController : ApiController
 	{
 		[Route]
 		[HttpGet]
