@@ -967,6 +967,12 @@
     <Folder Include="Angular\Retrospective\Controllers\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kheper.Core.Api\Kheper.Core.Api.csproj">
+      <Project>{01DAF9B2-A517-4B8A-B4ED-51C9D30602B3}</Project>
+      <Name>Kheper.Core.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
