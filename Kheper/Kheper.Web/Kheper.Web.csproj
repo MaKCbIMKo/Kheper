@@ -903,6 +903,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\OwinStartup.cs" />
     <Compile Include="Controllers\PlanningController.cs" />
+    <Compile Include="Hubs\FirstHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <PropertyGroup>
