@@ -54,7 +54,7 @@ namespace Kheper.Web.Controllers
         }
 
         [HttpPost]
-        [Route("{roomId}")]
+        [Route("{roomId}/votingsessions")]
         public VotingSession StartNewSession(long roomId, StartNewSessionAction parameters)
         {
             var session = new VotingSession { RoomId = roomId };
@@ -63,7 +63,7 @@ namespace Kheper.Web.Controllers
         }
 
         [HttpPost]
-        [Route("{roomId}/votingSessions/{sessionId}")]
+        [Route("{roomId}/votingsessions/{sessionId}/votes")]
         public Vote CastVote(long roomId, long sessoinId, CastVoteAction parameters)
         {
             var vote = new Vote
