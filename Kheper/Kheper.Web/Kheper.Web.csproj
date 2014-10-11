@@ -154,7 +154,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\Routes.js" />
     <Content Include="Angular\Views\Footer.html" />
+    <Content Include="Angular\Views\Layout.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -987,6 +989,10 @@
     <ProjectReference Include="..\Kheper.DataAccess\Kheper.DataAccess.csproj">
       <Project>{FB015E48-DEE2-4117-A10C-90DBB0049E82}</Project>
       <Name>Kheper.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kheper.Core\Kheper.Core.csproj">
+      <Project>{ed410591-132d-41cd-bf5c-51228eb1210b}</Project>
+      <Name>Kheper.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
