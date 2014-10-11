@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kheper.Web", "Kheper.Web\Kh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kheper.DataAccess", "Kheper.DataAccess\Kheper.DataAccess.csproj", "{FB015E48-DEE2-4117-A10C-90DBB0049E82}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4CA5D4CB-89BA-4DD6-A95A-8D051EBEE2FD}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Settings.StyleCop = Settings.StyleCop
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

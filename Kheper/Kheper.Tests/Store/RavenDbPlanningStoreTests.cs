@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Kheper.Core.Api.Model;
-using Kheper.Core.Store.RavenDb;
 using NUnit.Framework;
 using Raven.Client.Document;
+using System.Linq;
+using Kheper.Core.Model;
+using Kheper.DataAccess.RavenDb;
 
 namespace Kheper.Tests.Store
 {
+
     public class RavenDbPlanningStoreTests
     {
         [Test]
@@ -16,20 +17,34 @@ namespace Kheper.Tests.Store
             var room = new PlanningRoom
             {
                 Users = new List<string> { "Andrei", "Ulad" },
-                Sessions = new List<VotingSession>
+                Sessions = new Dictionary<long, VotingSession>
                 {
-                    new VotingSession
                     {
-                        Description = "Do this",
-                        VotedAt = DateTime.UtcNow,
-                        Votes = new List<Vote>{new Vote("Andrei", 5), new Vote("Ulad", 3)}
+                        1,
+                        new VotingSession
+                        {
+                            Description = "Do this",
+                            VotedAt = DateTime.UtcNow,
+                            Votes = new Dictionary<long, Vote>
+                            {
+                                {1, new Vote {Id = 1, UserName = "Andrei", Value = "5"}}, 
+                                {1, new Vote {Id=1, UserName = "Ulad", Value ="3"}}
+                            }
+                        }
                     },
-                    new VotingSession
                     {
-                        Description = "Do that",
-                        VotedAt = DateTime.UtcNow,
-                        Votes = new List<Vote>{new Vote("Andrei", 1), new Vote("Ulad", 8)},
-                        AgreedVote = 5
+                        1,
+                        new VotingSession
+                        {
+                            Description = "Do that",
+                            VotedAt = DateTime.UtcNow,
+                            Votes = new Dictionary<long, Vote>
+                            {
+                                {1, new Vote {Id = 1, UserName = "Andrei", Value = "5"}}, 
+                                {1, new Vote {Id=1, UserName = "Ulad", Value ="3"}}
+                            },
+                            AgreedVote = "5"
+                        }
                     }
                 }
             };
