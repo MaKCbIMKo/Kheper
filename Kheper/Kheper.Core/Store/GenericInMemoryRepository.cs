@@ -5,7 +5,7 @@ using Kheper.Core.Api.Store;
 
 namespace Kheper.Core.Store
 {
-	public class GenericInMemoryRepository<TEntity,TId> : IRepository<TEntity, TId> where TEntity : class
+	public abstract class GenericInMemoryRepository<TEntity,TId> : IRepository<TEntity, TId> where TEntity : class
 	{
 		private readonly ConcurrentDictionary<string, TEntity> _store = new ConcurrentDictionary<string, TEntity>();
 
@@ -14,13 +14,20 @@ namespace Kheper.Core.Store
 			return id.ToString();
 		}
 
+		protected abstract TId GetId(TEntity instance);
+
+		protected TEntity Clone(TEntity instance)
+		{
+			throw new NotImplementedException();
+		}
+
 		public TEntity Query(TId id)
 		{
 			var key = GenerateKey(id);
 			TEntity instance;
 			if (_store.TryGetValue(key, out instance))
 			{
-				return instance;
+				return Clone(instance);
 			}
 			else
 			{
@@ -28,19 +35,22 @@ namespace Kheper.Core.Store
 			}
 		}
 
-		public IQueryable<TEntity> Query(Func<TEntity, bool> predicate)
+		public IQueryable<TEntity> Query()
 		{
-			throw new NotImplementedException();
+			return _store.Values.Select(Clone).AsQueryable();
 		}
 
 		public TEntity Save(TEntity instance)
 		{
-			throw new NotImplementedException();
+			string key = GenerateKey(GetId(instance));
+			return Clone(_store.AddOrUpdate(key, instance, (k, i) => i));
 		}
 
-		public void Delete(TId id)
+		public void Delete(TEntity instance)
 		{
-			throw new NotImplementedException();
+			var id = GetId(instance);
+			var key = GenerateKey(id);
+			_store.TryRemove(key, out instance);
 		}
 	}
 }

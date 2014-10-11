@@ -2,5 +2,6 @@
 {
 	public class RetrospectiveRoom
 	{
+		public long Id { get; set; }
 	}
 }
