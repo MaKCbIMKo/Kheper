@@ -986,6 +986,10 @@
       <Project>{01DAF9B2-A517-4B8A-B4ED-51C9D30602B3}</Project>
       <Name>Kheper.Core.Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Kheper.Core\Kheper.Core.csproj">
+      <Project>{ed410591-132d-41cd-bf5c-51228eb1210b}</Project>
+      <Name>Kheper.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

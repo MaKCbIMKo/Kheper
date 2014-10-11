@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
+using Kheper.Core.Api.Model;
 using Kheper.Core.Api.Store;
-using Kheper.Core.Model;
 using Raven.Client;
 
 namespace Kheper.Core.Store.RavenDb
