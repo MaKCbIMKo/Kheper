@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
+</head>
+<body class="container">
+
+    <header>
+        <h2>Room number: 420</h2>
+    </header>
+    <div class="row-centered">
+        <section class="col-xs-6 col-centered col-fixed">
+            <header class="item">
+                <input type="button" class="btn btn-sm btn-info" value="New problem" />
+            </header>
+            <article>
+                <input type="text" placeholder="Title of issue ... " />
+                <br />
+                <textarea rows="3" placeholder="Description ..."></textarea>
+                <br />
+                <input type="button" value="Start vote" class="btn btn-sm btn-success" />
+                <input type="button" value="Stop vote" class="btn btn-sm btn-danger" />
+                <table>
+                    <tr>
+                        <td>
+                            <input type="button" value="0 points" class="btn btn-xs btn-primary" />
+                        </td>
+                        <td>
+                            <input type="button" value="? point" class="btn btn-xs btn-primary" /></td>
+                        <td>
+                            <input type="button" value="1 point" class="btn btn-xs btn-primary" /></td>
+                        <td>
+                            <input type="button" value="2 points" class="btn btn-xs btn-primary" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="3 points" class="btn btn-xs btn-primary" /></td>
+                        <td>
+                            <input type="button" value="5 points" class="btn btn-xs btn-primary" /></td>
+                        <td>
+                            <input type="button" value="8 points" class="btn btn-xs btn-primary" /></td>
+                        <td>
+                            <input type="button" value="13 points" class="btn btn-xs btn-primary" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" value="20 points" class="btn btn-xs btn-primary" /></td>
+                        <td>
+                            <input type="button" value="40 points" class="btn btn-xs btn-primary" /></td>
+                        <td>
+                            <input type="button" value="100 points" class="btn btn-xs btn-primary" /></td>
+                        <td>
+                            <input type="button" value="?" class="btn btn-xs btn-primary" /></td>
+                    </tr>
+                </table>
+            </article>
+            <footer>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Player</td>
+                            <td>Points</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="success">
+                            <td>Vanya </td>
+                            <td>8 </td>
+                        </tr>
+                        <tr>
+                            <td>Vanya </td>
+                            <td>9 </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </footer>
+        </section>
+        <aside class="col-xs-6 col-centered col-fixed">
+            <div>
+                <header>
+                    Statistics
+                </header>
+                <table>
+                    <tr>
+                        <td>Time:</td>
+                        <td>00:00:00</td>
+                    </tr>
+                </table>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>Points</td>
+                            <td>Votes</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>40</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </aside>
+    </div>
+</body>
+</html>
