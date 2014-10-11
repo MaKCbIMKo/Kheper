@@ -1,4 +1,4 @@
-﻿namespace Kheper.Core.Model
+﻿namespace Kheper.Core.Api.Model
 {
 	public class Vote
 	{

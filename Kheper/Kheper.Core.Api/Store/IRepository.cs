@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Kheper.Core.Store
+namespace Kheper.Core.Api.Store
 {
 	public interface IRepository<TEntity, in TId> where TEntity : class
 	{

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Kheper.Core.Model
+namespace Kheper.Core.Api.Model
 {
 	public class PlanningRoom
 	{

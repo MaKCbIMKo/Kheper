@@ -1,4 +1,5 @@
-﻿using Kheper.Core.Model;
+﻿using Kheper.Core.Api.Model;
+using Kheper.Core.Api.Store;
 
 namespace Kheper.Core.Store
 {

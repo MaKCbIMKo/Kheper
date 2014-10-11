@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Linq;
+using Kheper.Core.Api.Store;
 
 namespace Kheper.Core.Store
 {

@@ -1,40 +1,25 @@
-﻿using Microsoft.AspNet.SignalR;
-using Microsoft.AspNet.SignalR.Hubs;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNet.SignalR.Hubs;
 
 namespace Kheper.Web.Hubs
 {
 	[HubName("PokerRoomHub")]
-	public class PlanningRoomHub : Hub
+	public class PlanningRoomHub : BaseHub
 	{
 		public PlanningRoomHub()
 		{
 			
 		}
-
-		public bool Connect(int planningRoomId)
+		
+		[HubMethodName("Connect")]
+		public Result Connect(long planningRoomId)
 		{
-			return true;
+			return Result();
 		}
 
-		public bool Disconnect(int planningRoomId)
+		[HubMethodName("Disconnect")]
+		public Result Disconnect(long planningRoomId)
 		{
-			return true;
-		}
-
-		public override Task OnConnected()
-		{
-			return base.OnConnected();
-		}
-
-		public override Task OnDisconnected(bool stopCalled)
-		{
-			return base.OnDisconnected(stopCalled);
-		}
-
-		public override Task OnReconnected()
-		{
-			return base.OnReconnected();
+			return Result();
 		}
 	}
 }
