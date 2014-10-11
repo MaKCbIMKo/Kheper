@@ -64,6 +64,10 @@
       <Project>{ed410591-132d-41cd-bf5c-51228eb1210b}</Project>
       <Name>Kheper.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Kheper.DataAccess\Kheper.DataAccess.csproj">
+      <Project>{FB015E48-DEE2-4117-A10C-90DBB0049E82}</Project>
+      <Name>Kheper.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Kheper.Web\Kheper.Web.csproj">
       <Project>{67f521c9-76da-49f9-8c0e-1eaa78e99800}</Project>
       <Name>Kheper.Web</Name>

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Kheper.Core.Api.Model;
-using Kheper.Core.Store.RavenDb;
 using NUnit.Framework;
 using Raven.Client.Document;
+using System.Linq;
+using Kheper.Core.Model;
+using Kheper.DataAccess.RavenDb;
 
 namespace Kheper.Tests.Store
 {
+
     public class RavenDbPlanningStoreTests
     {
         [Test]
