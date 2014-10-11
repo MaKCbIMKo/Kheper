@@ -2,7 +2,13 @@
 {
 	public class Vote
 	{
-		public string UserName { get; set; }
+	    public Vote(string userName, int value)
+	    {
+	        UserName = userName;
+	        Value = value;
+	    }
+
+	    public string UserName { get; set; }
 		public int Value { get; set; }
 	}
 }
