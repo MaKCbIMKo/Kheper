@@ -1,9 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Web.Http;
+﻿using Kheper.Web.Core;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
-using Microsoft.Practices.Unity;
 using Owin;
+using System.Web.Http;
 using Unity.WebApi;
 
 [assembly: OwinStartup(typeof(Kheper.Web.OwinStartup))]
@@ -15,15 +14,18 @@ namespace Kheper.Web
 		public void Configuration(IAppBuilder appBuilder)
 		{
 			var httpConfiguration = new HttpConfiguration();
+			var hubConfiguration = new HubConfiguration();
 
 			var container = UnityConfig.CreateContainer();
 
 			httpConfiguration.DependencyResolver = new UnityDependencyResolver(container);
+			hubConfiguration.Resolver = new SignalRUnityDependencyResolver(container);
 
 			ConfigureHttp(httpConfiguration);
 			appBuilder.UseWebApi(httpConfiguration);
+			appBuilder.MapSignalR(hubConfiguration);
 		}
-
+		
 		internal void ConfigureHttp(HttpConfiguration configuration)
 		{
 			configuration.MapHttpAttributeRoutes();

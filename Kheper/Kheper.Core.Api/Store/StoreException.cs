@@ -1,6 +1,6 @@
 using System;
 
-namespace Kheper.Core.Store
+namespace Kheper.Core.Api.Store
 {
 	public class StoreException : Exception
 	{

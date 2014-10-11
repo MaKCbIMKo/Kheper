@@ -1,6 +1,6 @@
-﻿using Kheper.Core.Model;
+﻿using Kheper.Core.Api.Model;
 
-namespace Kheper.Core.Store
+namespace Kheper.Core.Api.Store
 {
 	public interface IPlanningRoomRepository : IRepository<PlanningRoom, long>
 	{
