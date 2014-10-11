@@ -1,17 +1,25 @@
 ﻿namespace Kheper.Core.Model
 {
     using System;
+    using System.Runtime.Serialization;
 
     [Serializable]
+    [DataContract]
     public class Vote
     {
-        public Vote(string userName, int value)
-        {
-            UserName = userName;
-            Value = value;
-        }
+        [DataMember]
+        public long PlanningRoomId { get; set; }
 
+        [DataMember]
+        public long VotingSessionId { get; set; }
+
+        [DataMember]
+        public long Id { get; set; }
+
+        [DataMember]
         public string UserName { get; set; }
-        public int Value { get; set; }
+
+        [DataMember]
+        public string Value { get; set; }
     }
 }

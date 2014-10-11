@@ -20,24 +20,23 @@ namespace Kheper.DataAccess.InMemory
             return Serialization.Clone(instance);
         }
 
-        public TEntity Query(TId id)
+        public virtual TEntity Query(TId id)
         {
             TEntity instance;
             if (!this._store.TryGetValue(id, out instance))
             {
-                throw new StoreException("Store does not contain instance of "
-                    + typeof(TEntity).Name + " with key " + id);
+                ThrowInstanceNotFound(id);
             }
 
             return this.Clone(instance);
         }
 
-        public IQueryable<TEntity> Query()
+        public virtual IQueryable<TEntity> Query()
         {
             return _store.Values.Select(Clone).AsQueryable();
         }
 
-        public TEntity Save(TEntity instance)
+        public virtual TEntity Save(TEntity instance)
         {
             instance = this.Clone(instance);
             TId? id = GetId(instance);
@@ -50,7 +49,7 @@ namespace Kheper.DataAccess.InMemory
             return Clone(_store.AddOrUpdate(id.Value, instance, (k, i) => i));
         }
 
-        public void Delete(TEntity instance)
+        public virtual void Delete(TEntity instance)
         {
             var id = GetId(instance);
             if (!id.HasValue)
@@ -59,6 +58,11 @@ namespace Kheper.DataAccess.InMemory
             }
 
             this._store.TryRemove(id.Value, out instance);
+        }
+
+        protected static void ThrowInstanceNotFound(TId id)
+        {
+            throw new StoreException("Store does not contain instance of " + typeof(TEntity).Name + " with key " + id);
         }
     }
 }

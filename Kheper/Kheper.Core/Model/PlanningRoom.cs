@@ -13,15 +13,30 @@ namespace Kheper.Core.Model
         public long Id { get; set; }
 
         [DataMember]
-        public List<VotingSession> Sessions;
+        public Dictionary<long, VotingSession> Sessions;
 
         [DataMember]
         public List<string> Users;
 
+        [DataMember]
+        public bool IsArchived { get; set; }
+
         public PlanningRoom()
         {
-            Sessions = new List<VotingSession>();
+            Sessions = new Dictionary<long, VotingSession>();
             Users = new List<string>();
+        }
+
+        public void AddOrUpdateSession(VotingSession session)
+        {
+            if (Sessions.ContainsKey(session.Id))
+            {
+                this.Sessions[session.Id] = session;
+            }
+            else
+            {
+                this.Sessions.Add(session.Id, session);
+            }
         }
     }
 }
