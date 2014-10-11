@@ -966,8 +966,9 @@
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\OwinStartup.cs" />
-    <Compile Include="Controllers\PlanningRoomController.cs" />
-    <Compile Include="Controllers\RetrospectiveRoomController.cs" />
+    <Compile Include="Controllers\ApiControllerWithHub.cs" />
+    <Compile Include="Controllers\Api\PlanningRoomController.cs" />
+    <Compile Include="Controllers\Api\RetrospectiveRoomController.cs" />
     <Compile Include="Core\SignalRUnityDependencyResolver.cs" />
     <Compile Include="Hubs\BaseHub.cs" />
     <Compile Include="Hubs\PlanningRoomHub.cs" />

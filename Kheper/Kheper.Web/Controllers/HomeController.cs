@@ -2,12 +2,12 @@
 
 namespace Kheper.Web.Controllers
 {
-    public class HomeController : Controller
-    {
-        // GET: Home
-        public ActionResult Index()
-        {
-            return View();
-        }
-    }
+	public class HomeController : Controller
+	{
+		// GET: Home
+		public ActionResult Index()
+		{
+			return View();
+		}
+	}
 }
