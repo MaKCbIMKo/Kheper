@@ -1,17 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using Raven.Client;
 using Raven.Client.Document;
 using System.Linq;
 using Kheper.Core.Model;
 using Kheper.DataAccess.RavenDb;
+using Raven.Client.Embedded;
 
 namespace Kheper.Tests.Store
 {
-    [Ignore("Manual run tests")]
     [TestFixture]
     public class RavenDbPlanningStoreTests
     {
+        private IDocumentStore _docStore;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _docStore = new EmbeddableDocumentStore
+            {
+                RunInMemory = true
+            };
+            _docStore.Initialize();
+        }
+
+
         [Test]
         public void CanCreate()
         {
@@ -29,12 +43,12 @@ namespace Kheper.Tests.Store
                             Votes = new Dictionary<long, Vote>
                             {
                                 {1, new Vote {Id = 1, UserName = "Andrei", Value = "5"}}, 
-                                {1, new Vote {Id=1, UserName = "Ulad", Value ="3"}}
+                                {2, new Vote {Id=1, UserName = "Ulad", Value ="3"}}
                             }
                         }
                     },
                     {
-                        1,
+                        2,
                         new VotingSession
                         {
                             Description = "Do that",
@@ -42,7 +56,7 @@ namespace Kheper.Tests.Store
                             Votes = new Dictionary<long, Vote>
                             {
                                 {1, new Vote {Id = 1, UserName = "Andrei", Value = "5"}}, 
-                                {1, new Vote {Id=1, UserName = "Ulad", Value ="3"}}
+                                {2, new Vote {Id=1, UserName = "Ulad", Value ="3"}}
                             },
                             AgreedVote = "5"
                         }
@@ -50,14 +64,7 @@ namespace Kheper.Tests.Store
                 }
             };
 
-            var docStore = new DocumentStore
-            {
-                Url = "http://epbygomw0294:9123",
-                DefaultDatabase = "kheper"
-            };
-            docStore.Initialize();
-
-            using (var session = docStore.OpenSession())
+            using (var session = _docStore.OpenSession())
             {
                 session.Store(room);
                 session.SaveChanges();
@@ -67,19 +74,18 @@ namespace Kheper.Tests.Store
         [Test]
         public void CanDelete()
         {
-            var docStore = new DocumentStore
+            PlanningRoom room;
+            using (var repo = new PlanningRoomRavenRepository(_docStore))
             {
-                Url = "http://epbygomw0294:9123",
-                DefaultDatabase = "kheper"
-            };
-            docStore.Initialize();
+                repo.Save(new PlanningRoom());
 
+                room = repo.Query().First();
+            }
 
-            var repo = new PlanningRoomRavenRepository(docStore);
-            var room = repo.Query().First();
-
-            repo = new PlanningRoomRavenRepository(docStore);
-            repo.Delete(room);
+            using (var repo = new PlanningRoomRavenRepository(_docStore))
+            {
+                repo.Delete(room);
+            }
         }
     }
 }
