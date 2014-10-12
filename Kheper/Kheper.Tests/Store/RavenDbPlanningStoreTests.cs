@@ -8,12 +8,11 @@ using Kheper.DataAccess.RavenDb;
 
 namespace Kheper.Tests.Store
 {
-
     public class RavenDbPlanningStoreTests
     {
         [Ignore("Manual run tests")]
         [Test]
-        public void Test()
+        public void CanCreate()
         {
             var room = new PlanningRoom
             {
@@ -65,7 +64,7 @@ namespace Kheper.Tests.Store
         }
 
         [Test]
-        public void Qwa()
+        public void CanDelete()
         {
             var docStore = new DocumentStore
             {
