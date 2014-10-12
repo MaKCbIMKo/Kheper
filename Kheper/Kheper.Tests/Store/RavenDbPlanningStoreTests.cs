@@ -11,6 +11,7 @@ namespace Kheper.Tests.Store
 
     public class RavenDbPlanningStoreTests
     {
+        [Ignore("Manual run tests")]
         [Test]
         public void Test()
         {
