@@ -54,7 +54,7 @@
     <Compile Include="Store\IVoteRepository.cs" />
     <Compile Include="Store\IVotingSessionRepository.cs" />
     <Compile Include="Store\StoreException.cs" />
-    <Compile Include="Store\VoteId.cs" />
+    <Compile Include="Model\VoteId.cs" />
     <Compile Include="Util\Serialization.cs" />
   </ItemGroup>
   <ItemGroup>
