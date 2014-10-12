@@ -8,9 +8,10 @@ using Kheper.DataAccess.RavenDb;
 
 namespace Kheper.Tests.Store
 {
+    [Ignore("Manual run tests")]
+    [TestFixture]
     public class RavenDbPlanningStoreTests
     {
-        [Ignore("Manual run tests")]
         [Test]
         public void CanCreate()
         {
