@@ -8,7 +8,7 @@ namespace Kheper.Web.Hubs
 
 	public interface IPlanningRoomHub
 	{
-		public void M1();
-		public void M2();
+		void M1();
+		void M2();
 	}
 }
