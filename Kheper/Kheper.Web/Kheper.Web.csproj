@@ -154,6 +154,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\PlaningPocker\Views\Planning.html" />
     <Content Include="Angular\Routes.js" />
     <Content Include="Angular\Views\Footer.html" />
     <Content Include="Angular\Views\Layout.html" />
@@ -977,7 +978,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Angular\Controllers\" />
-    <Folder Include="Angular\PlaningPocker\" />
     <Folder Include="Angular\Retrospective\Controllers\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
