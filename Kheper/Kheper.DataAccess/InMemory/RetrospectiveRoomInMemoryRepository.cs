@@ -5,9 +5,21 @@ namespace Kheper.DataAccess.InMemory
 {
 	public class RetrospectiveRoomInMemoryRepository : GenericInMemoryRepository<RetrospectiveRoom, long>, IRetrospectiveRoomRepository
 	{
-		protected override long GetId(RetrospectiveRoom instance)
+	    private long _lastId;
+
+		protected override long? GetId(RetrospectiveRoom instance)
 		{
-			return instance.Id;
+		    return instance.Id == 0 ? (long?)null : instance.Id;
 		}
+
+	    protected override void SetId(RetrospectiveRoom instance, long id)
+	    {
+	        instance.Id = id;
+	    }
+
+	    protected override long GenerateId(RetrospectiveRoom instance)
+	    {
+	        return ++_lastId;
+	    }
 	}
 }

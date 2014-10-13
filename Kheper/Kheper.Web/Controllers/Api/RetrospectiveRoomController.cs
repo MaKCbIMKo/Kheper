@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using Kheper.Web.Hubs;
 
 namespace Kheper.Web.Controllers
 {
 	[RoutePrefix("api/retrospective")]
-	public class RetrospectiveRoomController : ApiController
+	public class RetrospectiveRoomController : ApiControllerWithHub<RetrospectiveRoomHub>
 	{
 		[Route]
 		[HttpGet]

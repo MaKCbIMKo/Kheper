@@ -35,8 +35,13 @@ namespace Kheper.DataAccess.RavenDb
 
         public void Delete(PlanningRoom instance)
         {
-            _session.Delete(instance);
+            if (instance == null)
+                throw new ArgumentNullException("instance");
+            if (instance.Id == 0)
+                throw new StoreException("Deleting Instance must have non zero ID");
 
+            instance = _session.Load<PlanningRoom>(instance.Id); // We must reload this instance into current session to be able to delete it
+            _session.Delete(instance);
             _session.SaveChanges();
         }
 

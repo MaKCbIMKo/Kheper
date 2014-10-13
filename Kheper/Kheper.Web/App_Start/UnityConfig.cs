@@ -10,8 +10,10 @@ namespace Kheper.Web
 		{
 			var container = new UnityContainer();
 
-			container.RegisterInstance<IPlanningRoomRepository>(new PlanningRoomInMemoryRepository());
-			container.RegisterInstance<IRetrospectiveRoomRepository>(new RetrospectiveRoomInMemoryRepository());
+			container.RegisterType<IPlanningRoomRepository, PlanningRoomInMemoryRepository>(new ContainerControlledLifetimeManager());
+			container.RegisterType<IRetrospectiveRoomRepository,RetrospectiveRoomInMemoryRepository>(new ContainerControlledLifetimeManager());
+		    container.RegisterType<IVoteRepository, VoteInMemoryRepository>(new ContainerControlledLifetimeManager());
+		    container.RegisterType<IVotingSessionRepository, VotingSessionInMemoryRepository>(new ContainerControlledLifetimeManager());
 
 			return container;
 		}

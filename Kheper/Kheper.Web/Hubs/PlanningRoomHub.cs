@@ -1,25 +1,14 @@
-﻿using Microsoft.AspNet.SignalR.Hubs;
+﻿using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
 
 namespace Kheper.Web.Hubs
 {
 	[HubName("PokerRoomHub")]
-	public class PlanningRoomHub : BaseHub
-	{
-		public PlanningRoomHub()
-		{
-			
-		}
-		
-		[HubMethodName("Connect")]
-		public Result Connect(long planningRoomId)
-		{
-			return Result();
-		}
+	public class PlanningRoomHub : Hub { }
 
-		[HubMethodName("Disconnect")]
-		public Result Disconnect(long planningRoomId)
-		{
-			return Result();
-		}
+	public interface IPlanningRoomHub
+	{
+		void M1();
+		void M2();
 	}
 }
