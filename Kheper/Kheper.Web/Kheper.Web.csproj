@@ -163,7 +163,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Angular\Controllers\MainMenuCtrl.js" />
+    <Content Include="Angular\Kheper.js" />
     <Content Include="Angular\PlaningPocker\Views\Planning.html" />
+    <Content Include="Angular\Controllers\BaseCtrl.js" />
     <Content Include="Angular\Routes.js" />
     <Content Include="Angular\Views\Footer.html" />
     <Content Include="Angular\Views\Layout.html" />
@@ -173,6 +176,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap.collapse.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
@@ -180,11 +184,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -974,6 +981,7 @@
     <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\OwinStartup.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
@@ -981,6 +989,9 @@
     <Compile Include="Controllers\Api\PlanningRoomController.cs" />
     <Compile Include="Controllers\Api\RetrospectiveRoomController.cs" />
     <Compile Include="Core\SignalRUnityDependencyResolver.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Hubs\BaseHub.cs" />
     <Compile Include="Hubs\PlanningRoomHub.cs" />
     <Compile Include="Hubs\RetrospectiveRoomHub.cs" />
@@ -988,7 +999,6 @@
     <Compile Include="Controllers\HomeController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Angular\Controllers\" />
     <Folder Include="Angular\Retrospective\Controllers\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
