@@ -3,7 +3,7 @@ angular.module("kheper").config([
     '$stateProvider', function($stateProvider) {
         $stateProvider.state("kheper", {
             templateUrl: "Angular/Views/Layout.html",
-            controller: "BaseCtrl"
+            controller: "HomeCtrl"
         }).state('kheper.home', {
             url: "/",
             views: {

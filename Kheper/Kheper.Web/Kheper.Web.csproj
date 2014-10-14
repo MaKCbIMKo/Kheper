@@ -166,7 +166,7 @@
     <Content Include="Angular\Controllers\MainMenuCtrl.js" />
     <Content Include="Angular\Kheper.js" />
     <Content Include="Angular\PlaningPocker\Views\Planning.html" />
-    <Content Include="Angular\Controllers\BaseCtrl.js" />
+    <Content Include="Angular\Controllers\HomeCtrl.js" />
     <Content Include="Angular\Routes.js" />
     <Content Include="Angular\Views\Footer.html" />
     <Content Include="Angular\Views\Layout.html" />
