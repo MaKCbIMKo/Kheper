@@ -1,9 +1,8 @@
-﻿using Kheper.Web.Core;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
 using Microsoft.Owin;
 using Owin;
 using System.Web.Http;
-using Unity.WebApi;
+
 using Microsoft.Owin.BuilderProperties;
 
 [assembly: OwinStartup(typeof(Kheper.Web.OwinStartup))]
@@ -14,16 +13,16 @@ namespace Kheper.Web
     using System.Web.Mvc;
     using System.Web.Routing;
 
-    using Microsoft.Practices.Unity;
+    using Autofac;
 
     public class OwinStartup
     {
         public void Configuration(IAppBuilder appBuilder)
         {
-            var container = UnityConfig.CreateContainer();
+            var container = DependencyConfig.CreateContainer();
 
             // Web Api
-            var httpConfiguration = ConfigureHttp(container);
+            var httpConfiguration = this.ConfigureWebApi(container);
             appBuilder.UseWebApi(httpConfiguration);
 
             // MVC
@@ -33,14 +32,14 @@ namespace Kheper.Web
             // SignalR
             var hubConfiguration = new HubConfiguration
             {
-                Resolver = new SignalRUnityDependencyResolver(container)
+                Resolver = new Autofac.Integration.SignalR.AutofacDependencyResolver(container)
             };
             appBuilder.MapSignalR(hubConfiguration);
 
             RegisterShutdown(appBuilder, container);
         }
 
-        private void RegisterShutdown(IAppBuilder appBuilder, IUnityContainer container)
+        private void RegisterShutdown(IAppBuilder appBuilder, ILifetimeScope container)
         {
             var properties = new AppProperties(appBuilder.Properties);
             var token = properties.OnAppDisposing;
@@ -50,11 +49,11 @@ namespace Kheper.Web
             }
         }
 
-        internal HttpConfiguration ConfigureHttp(IUnityContainer container)
+        internal HttpConfiguration ConfigureWebApi(ILifetimeScope container)
         {
             var httpConfiguration = new HttpConfiguration
             {
-                DependencyResolver = new UnityDependencyResolver(container)
+                DependencyResolver = new Autofac.Integration.WebApi.AutofacWebApiDependencyResolver(container)
             };
 
             httpConfiguration.MapHttpAttributeRoutes();
