@@ -1002,7 +1002,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\ConfigurationModule.cs" />
-    <Compile Include="App_Start\PreemptiveAutowiring.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\OwinStartup.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
