@@ -47,9 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccessAssembly.cs" />
     <Compile Include="InMemory\VoteInMemoryRepository.cs" />
     <Compile Include="InMemory\VotingSessionInMemoryRepository.cs" />
-    <Compile Include="InMemory\GenericInMemoryRepository.cs" />
+    <Compile Include="InMemory\AbstractInMemoryRepository.cs" />
     <Compile Include="InMemory\PlanningRoomInMemoryRepository.cs" />
     <Compile Include="InMemory\RetrospectiveRoomInMemoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,7 +7,7 @@ namespace Kheper.DataAccess.InMemory
 {
     using Kheper.Core.Util;
 
-    public abstract class GenericInMemoryRepository<TEntity, TId> : IRepository<TEntity, TId> where TEntity : class where TId : struct
+    public abstract class AbstractInMemoryRepository<TEntity, TId> : IRepository<TEntity, TId> where TEntity : class where TId : struct
     {
         private readonly ConcurrentDictionary<TId, TEntity> _store = new ConcurrentDictionary<TId, TEntity>();
 

@@ -6,7 +6,10 @@ namespace Kheper.DataAccess.InMemory
     using System;
     using System.Collections.Generic;
 
-    public class PlanningRoomInMemoryRepository : GenericInMemoryRepository<PlanningRoom, long>, IPlanningRoomRepository
+    using Kheper.Core.Dependency;
+
+    [Autowire(typeof(IPlanningRoomRepository), Precedence = EPrecedence.Development)]
+    public class PlanningRoomInMemoryRepository : AbstractInMemoryRepository<PlanningRoom, long>, IPlanningRoomRepository
     {
         private long lastId;
 

@@ -3,7 +3,10 @@ using Kheper.Core.Store;
 
 namespace Kheper.DataAccess.InMemory
 {
-	public class RetrospectiveRoomInMemoryRepository : GenericInMemoryRepository<RetrospectiveRoom, long>, IRetrospectiveRoomRepository
+    using Kheper.Core.Dependency;
+
+    [Autowire(typeof(IRetrospectiveRoomRepository), Precedence = EPrecedence.Development)]
+    public class RetrospectiveRoomInMemoryRepository : AbstractInMemoryRepository<RetrospectiveRoom, long>, IRetrospectiveRoomRepository
 	{
 	    private long _lastId;
 

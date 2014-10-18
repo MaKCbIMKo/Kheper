@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kheper.DataAccess.InMemory
 {
+    using Kheper.Core.Dependency;
     using Kheper.Core.Model;
     using Kheper.Core.Store;
 
-    public class VoteInMemoryRepository : GenericInMemoryRepository<Vote, VoteId>, IVoteRepository
+    [Autowire(typeof(IVoteRepository), Precedence = EPrecedence.Development)]
+    public class VoteInMemoryRepository : AbstractInMemoryRepository<Vote, VoteId>, IVoteRepository
     {
         private readonly IVotingSessionRepository _votingSessionRepository;
 

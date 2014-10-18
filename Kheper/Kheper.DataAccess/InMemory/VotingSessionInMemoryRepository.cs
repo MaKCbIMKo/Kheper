@@ -3,10 +3,12 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Kheper.Core.Dependency;
     using Kheper.Core.Model;
     using Kheper.Core.Store;
 
-    public class VotingSessionInMemoryRepository : GenericInMemoryRepository<VotingSession, VotingSessionId>, IVotingSessionRepository
+    [Autowire(typeof(IVotingSessionRepository), Precedence = EPrecedence.Development)]
+    public class VotingSessionInMemoryRepository : AbstractInMemoryRepository<VotingSession, VotingSessionId>, IVotingSessionRepository
     {
         private long _lastId;
 

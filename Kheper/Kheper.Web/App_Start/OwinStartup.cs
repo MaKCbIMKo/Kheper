@@ -9,14 +9,15 @@ using Microsoft.Owin.BuilderProperties;
 
 namespace Kheper.Web
 {
-    using System;
     using System.Reflection;
+    using System.Text;
     using System.Threading;
     using System.Web.Mvc;
     using System.Web.Routing;
 
     using Autofac;
-    using Autofac.Core;
+    using Autofac.Builder;
+    using Autofac.Features.Scanning;
     using Autofac.Integration.Mvc;
     using Autofac.Integration.SignalR;
     using Autofac.Integration.WebApi;
@@ -24,30 +25,34 @@ namespace Kheper.Web
     using Kheper.Core.Dependency;
     using Kheper.Core.Store;
     using Kheper.Core.Util;
+    using Kheper.DataAccess;
     using Kheper.DataAccess.InMemory;
+
+    using Raven.Client;
+    using Raven.Client.Embedded;
 
     public class OwinStartup
     {
         public void Configuration(IAppBuilder appBuilder)
         {
-            var containerBuilder = CreateContainer();
+            var container = CreateContainer();
 
             // Web Api
-            var httpConfiguration = this.ConfigureWebApi(containerBuilder);
+            var httpConfiguration = this.ConfigureWebApi(container);
             appBuilder.UseWebApi(httpConfiguration);
 
             // MVC
             this.ConfigureMvcRoutes(RouteTable.Routes);
-            UnityMvcActivator.Start(containerBuilder);
+            UnityMvcActivator.Start(container);
 
             // SignalR
             var hubConfiguration = new HubConfiguration
             {
-                Resolver = new Autofac.Integration.SignalR.AutofacDependencyResolver(containerBuilder)
+                Resolver = new Autofac.Integration.SignalR.AutofacDependencyResolver(container)
             };
             appBuilder.MapSignalR(hubConfiguration);
 
-            RegisterShutdown(appBuilder, containerBuilder);
+            RegisterShutdown(appBuilder, container);
         }
 
         public static IContainer CreateContainer()
@@ -55,20 +60,15 @@ namespace Kheper.Web
             var builder = new ContainerBuilder();
 
             Assembly[] assemblies = { Assembly.GetExecutingAssembly() };
+
             builder.RegisterApiControllers(assemblies);
             builder.RegisterHubs(assemblies);
             builder.RegisterControllers(assemblies);
 
             builder.RegisterAssemblyModules(assemblies);
 
-            // TODO: what scope will be used for autowired component?
-            builder.RegisterAssemblyTypes(assemblies)
-                .Where(t => Attribute.IsDefined(t, typeof(AutowireAttribute)))
-                .As(t => ((AutowireAttribute)Attribute.GetCustomAttribute(t, typeof(AutowireAttribute))).As);
-
             return builder.Build();
         }
-
 
         private void RegisterShutdown(IAppBuilder appBuilder, ILifetimeScope container)
         {

@@ -2,9 +2,16 @@
 {
     using System;
 
-    [AttributeUsage(AttributeTargets.Class)]
+    //[AttributeUsage(AttributeTargets.Class)]
     public class AutowireAttribute : Attribute
     {
-        public Type As { get; set; }
+        public Type Service { get; private set; }
+        public EPrecedence Precedence { get; set; }
+
+        public AutowireAttribute(Type service)
+        {
+            Service = service;
+            Precedence = EPrecedence.Application;
+        }
     }
 }
