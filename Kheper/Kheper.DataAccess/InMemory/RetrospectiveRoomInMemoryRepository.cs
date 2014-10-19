@@ -5,7 +5,8 @@ namespace Kheper.DataAccess.InMemory
 {
     using Kheper.Core.Dependency;
 
-    [Autowire(typeof(IRetrospectiveRoomRepository), Precedence = EPrecedence.Development)]
+    [Singleton]
+    [Component(Precedence = EPrecedence.Development)]
     public class RetrospectiveRoomInMemoryRepository : AbstractInMemoryRepository<RetrospectiveRoom, long>, IRetrospectiveRoomRepository
 	{
 	    private long _lastId;

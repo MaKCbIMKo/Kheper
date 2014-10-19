@@ -6,24 +6,51 @@ namespace Kheper.Core.Dependency
     using System.Reflection;
 
     using Autofac;
+    using Autofac.Builder;
     using Autofac.Core;
 
-    public class PreemptiveAutowiring : IRegistrationSource
+    public class PreemptiveRegistrationSource : IRegistrationSource
     {
         private readonly EPrecedence precedence;
 
         private readonly IContainer autowiringContainer;
 
-        public PreemptiveAutowiring(EPrecedence precedence, Assembly[] assemblies)
+        public PreemptiveRegistrationSource(EPrecedence precedence, Assembly[] assemblies)
         {
             this.precedence = precedence;
             var builder = new ContainerBuilder();
 
             // TODO: what scope will be used for autowired component?
-            builder.RegisterAssemblyTypes(assemblies)
-                .Where(t => Attribute.IsDefined(t, typeof(AutowireAttribute)))
-                .As(t => ((AutowireAttribute)Attribute.GetCustomAttribute(t, typeof(AutowireAttribute))).Service);
+            var registration = builder.RegisterAssemblyTypes(assemblies)
+                .Where(t => Attribute.IsDefined(t, typeof(ComponentAttribute)))
+                .AsImplementedInterfaces();
+
+            registration.ActivatorData.ConfigurationActions.Add(RecognizeLifetimeScope);
+
             this.autowiringContainer = builder.Build();
+        }
+
+        private static void RecognizeLifetimeScope(Type type, IRegistrationBuilder<object, ConcreteReflectionActivatorData, SingleRegistrationStyle> rb)
+        {
+            var attribute = (LifetimeScopeAttribute)Attribute.GetCustomAttribute(type, typeof(LifetimeScopeAttribute));
+            if (attribute != null)
+            {
+                var scope = attribute.Scope;
+                switch (scope)
+                {
+                    case ELifetimeScope.SingleInstance:
+                        rb.SingleInstance();
+                        break;
+                    case ELifetimeScope.InstancePerDependency:
+                        rb.InstancePerDependency();
+                        break;
+                    case ELifetimeScope.InstancePerLifetimeScope:
+                        rb.InstancePerLifetimeScope();
+                        break;
+                    case ELifetimeScope.Unspecified:
+                        break;
+                }
+            }
         }
 
         public IEnumerable<IComponentRegistration> RegistrationsFor(Service service, Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
@@ -44,18 +71,22 @@ namespace Kheper.Core.Dependency
             foreach (var registration in registrations)
             {
                 Type type = registration.Activator.LimitType;
-                var attr = (AutowireAttribute)Attribute.GetCustomAttribute(type, typeof(AutowireAttribute));
-                if (attr == null)
+                var attribute = (ComponentAttribute)Attribute.GetCustomAttribute(type, typeof(ComponentAttribute));
+                if (attribute == null)
                 {
                     throw new InvalidOperationException("Found registration without Autowire attribute" + registration);
                 }
+
+                EPrecedence attributePrecedence = attribute.Precedence != EPrecedence.Unspecified ?
+                    attribute.Precedence : EPrecedence.Application;
+
                 // if registered component has precedence which is enabled for the current environement
                 // and registered component has greater precedence over the other components
                 // then we use this component in resolution
-                if (attr.Precedence <= this.precedence && attr.Precedence > foundPrecedence)
+                if (attributePrecedence <= this.precedence && attributePrecedence > foundPrecedence)
                 {
                     foundRegistration = registration;
-                    foundPrecedence = attr.Precedence;
+                    foundPrecedence = attribute.Precedence;
                 }
             }
 

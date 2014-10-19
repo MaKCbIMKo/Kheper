@@ -7,7 +7,8 @@ namespace Kheper.DataAccess.InMemory
     using Kheper.Core.Model;
     using Kheper.Core.Store;
 
-    [Autowire(typeof(IVoteRepository), Precedence = EPrecedence.Development)]
+    [Singleton]
+    [Component(Precedence = EPrecedence.Development)]
     public class VoteInMemoryRepository : AbstractInMemoryRepository<Vote, VoteId>, IVoteRepository
     {
         private readonly IVotingSessionRepository _votingSessionRepository;
