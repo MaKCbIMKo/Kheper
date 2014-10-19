@@ -48,7 +48,10 @@ namespace Kheper.Core.Dependency
                         rb.InstancePerLifetimeScope();
                         break;
                     case ELifetimeScope.Unspecified:
+                        // decision will be made by the container
                         break;
+                    default:
+                        throw new NotImplementedException("Lifetime scope " + scope + " is not recognized");
                 }
             }
         }
