@@ -10,8 +10,15 @@ angular.module("kheper.controllers").controller('RetroCtrl', function ($scope, $
         anonymous: false,
         type: "Start",
     };
-    $scope.addStartDoing = function() {
-        retroRepository.add($scope.newStartDoing);
+    $scope.addStartDoing = function () {
+        var newItem = {
+            title: $scope.newStartDoing.title,
+            description: $scope.newStartDoing.description,
+            anonymous: $scope.newStartDoing.anonymous,
+            type: "Start",
+        };
+        retroRepository.add(newItem);
+
     };
     $scope.clearStartDoing = function() {
         $scope.newStartDoing.title = "";

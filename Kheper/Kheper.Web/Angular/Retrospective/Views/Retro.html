@@ -1,8 +1,8 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading">Start Doing</div>
     <div class="panel-body">
-        <div ng-repeat="start in startDoingItems">
-            <div class="panel">
+        <div ng-repeat="start in items | filter:'Start'">
+            <div class="panel panel-default">
                 <div class="panel-heading">{{start.title}}</div>
                 <div class="panel-body">{{start.description}}</div>
             </div>

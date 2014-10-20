@@ -9,4 +9,4 @@ angular.module('kheper', ['ui.router', 'kheper.controllers'])
 
 angular.module("kheper.controllers", ['ui.router', "kheper.services"]);
 
-angular.module("kheper.services");
+angular.module("kheper.services", []);
