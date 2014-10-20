@@ -1,13 +1,12 @@
 ﻿<div class="panel panel-default">
 	<!-- Default panel contents -->
-	<div class="panel-heading">Connected users</div>
-	<div class="panel-body">
-		<p ng-model="retro">Users for retro <span class="label label-info" ng-bind="retro.id"></span></p>
-	</div>
+    <div class="panel-heading">
+        <p ng-model="retro">Users for retro <span class="label label-info" ng-bind="retro.id"></span></p>
+    </div>
 	<!-- List of connected users -->
 	<ul class="list-group">
 		<li class="list-group-item" ng-repeat="user in users">
-			{{ x.name }}
+			{{ user.name }}
 		</li>
 	</ul>
 </div>

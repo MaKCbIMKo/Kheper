@@ -187,14 +187,20 @@
     <Content Include="Angular\Kheper.js" />
     <Content Include="Angular\PlaningPocker\Views\Planning.html" />
     <Content Include="Angular\Controllers\HomeCtrl.js" />
+    <Content Include="Angular\Retrospective\Controllers\RetroCtrl.js" />
+    <Content Include="Angular\Retrospective\Controllers\UserCtrl.js" />
+    <Content Include="Angular\Retrospective\Services\RetroRepository.js" />
+    <Content Include="Angular\Retrospective\Views\Layout.html" />
     <Content Include="Angular\Routes.js" />
     <Content Include="Angular\Views\Footer.html" />
+    <Content Include="Angular\Views\Home.html" />
     <Content Include="Angular\Views\Layout.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap.collapse.css" />
+    <Content Include="Content\bootsrap.extention.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
@@ -221,8 +227,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Angular\Views\MainMenu.html" />
-    <Content Include="Angular\Retrospective\Views\RetroCommands.html" />
-    <Content Include="Angular\Retrospective\Views\UserPanel.html" />
+    <Content Include="Angular\Retrospective\Views\Retro.html" />
+    <Content Include="Angular\Retrospective\Views\Users.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
@@ -1019,7 +1025,6 @@
     <Compile Include="Controllers\HomeController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Angular\Retrospective\Controllers\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
