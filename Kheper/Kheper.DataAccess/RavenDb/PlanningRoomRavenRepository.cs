@@ -8,7 +8,7 @@ namespace Kheper.DataAccess.RavenDb
 {
     using Kheper.Core.Dependency;
 
-    [Autowire(typeof(IPlanningRoomRepository), Precedence = EPrecedence.Application)]
+    [Component(Precedence = EPrecedence.Application)]
     public class PlanningRoomRavenRepository: IPlanningRoomRepository, IDisposable
     {
         private readonly IDocumentSession _session;

@@ -18,7 +18,7 @@
                     Assembly.GetExecutingAssembly(),
                     typeof(DataAccessAssembly).Assembly
                 };
-            builder.RegisterSource(new PreemptiveAutowiring(EPrecedence.Development, assemblies));
+            builder.RegisterSource(new PreemptiveRegistrationSource(EPrecedence.Development, assemblies));
         }
     }
 }

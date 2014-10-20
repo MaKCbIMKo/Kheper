@@ -8,7 +8,8 @@ namespace Kheper.DataAccess.InMemory
 
     using Kheper.Core.Dependency;
 
-    [Autowire(typeof(IPlanningRoomRepository), Precedence = EPrecedence.Development)]
+    [Singleton]
+    [Component(Precedence = EPrecedence.Development)]
     public class PlanningRoomInMemoryRepository : AbstractInMemoryRepository<PlanningRoom, long>, IPlanningRoomRepository
     {
         private long lastId;
