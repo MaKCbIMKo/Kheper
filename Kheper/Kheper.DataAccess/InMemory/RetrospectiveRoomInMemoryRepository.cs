@@ -6,10 +6,10 @@ namespace Kheper.DataAccess.InMemory
     using Kheper.Core.Dependency;
 
     [Singleton]
-    [Component(Precedence = EPrecedence.Development)]
+    [Component(Precedence = EAutowiringPrecedence.Development)]
     public class RetrospectiveRoomInMemoryRepository : AbstractInMemoryRepository<RetrospectiveRoom, long>, IRetrospectiveRoomRepository
 	{
-	    private long _lastId;
+	    private long lastId;
 
 		protected override long? GetId(RetrospectiveRoom instance)
 		{
@@ -23,7 +23,7 @@ namespace Kheper.DataAccess.InMemory
 
 	    protected override long GenerateId(RetrospectiveRoom instance)
 	    {
-	        return ++_lastId;
+	        return ++this.lastId;
 	    }
 	}
 }

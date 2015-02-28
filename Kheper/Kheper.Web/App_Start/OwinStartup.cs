@@ -1,35 +1,24 @@
-﻿using Microsoft.AspNet.SignalR;
-using Microsoft.Owin;
-using Owin;
-using System.Web.Http;
-
-using Microsoft.Owin.BuilderProperties;
-
-[assembly: OwinStartup(typeof(Kheper.Web.OwinStartup))]
+﻿[assembly: Microsoft.Owin.OwinStartup(typeof(Kheper.Web.OwinStartup))]
 
 namespace Kheper.Web
 {
     using System.Reflection;
-    using System.Text;
     using System.Threading;
+    using System.Web.Http;
     using System.Web.Mvc;
     using System.Web.Routing;
 
-    using Autofac;
-    using Autofac.Builder;
-    using Autofac.Features.Scanning;
-    using Autofac.Integration.Mvc;
-    using Autofac.Integration.SignalR;
-    using Autofac.Integration.WebApi;
-
-    using Kheper.Core.Dependency;
-    using Kheper.Core.Store;
-    using Kheper.Core.Util;
     using Kheper.DataAccess;
-    using Kheper.DataAccess.InMemory;
 
-    using Raven.Client;
-    using Raven.Client.Embedded;
+    using Microsoft.AspNet.SignalR;
+    using Microsoft.AspNet.SignalR.Ninject;
+    using Microsoft.Owin.BuilderProperties;
+
+    using Ninject;
+    using Ninject.Web.Common.OwinHost;
+    using Ninject.Web.WebApi.OwinHost;
+
+    using Owin;
 
     public class OwinStartup
     {
@@ -39,53 +28,51 @@ namespace Kheper.Web
 
             // Web Api
             var httpConfiguration = this.ConfigureWebApi(container);
-            appBuilder.UseWebApi(httpConfiguration);
+            appBuilder.UseNinjectMiddleware(() => container).UseNinjectWebApi(httpConfiguration);
 
             // MVC
-            this.ConfigureMvcRoutes(RouteTable.Routes);
-            UnityMvcActivator.Start(container);
+            this.ConfigureMvcRoutes(RouteTable.Routes, container);
 
             // SignalR
             var hubConfiguration = new HubConfiguration
             {
-                Resolver = new Autofac.Integration.SignalR.AutofacDependencyResolver(container)
+                Resolver = new NinjectDependencyResolver(container)
             };
             appBuilder.MapSignalR(hubConfiguration);
 
-            RegisterShutdown(appBuilder, container);
+            this.RegisterShutdown(appBuilder, container);
         }
 
-        public static IContainer CreateContainer()
+        public static IKernel CreateContainer()
         {
-            var builder = new ContainerBuilder();
-
-            Assembly[] assemblies = { Assembly.GetExecutingAssembly() };
-
-            builder.RegisterApiControllers(assemblies);
-            builder.RegisterHubs(assemblies);
-            builder.RegisterControllers(assemblies);
-
-            builder.RegisterAssemblyModules(assemblies);
-
-            return builder.Build();
+            var container = new StandardKernel();
+            Assembly[] assemblies =
+                {
+                    Assembly.GetExecutingAssembly(),
+                    typeof(DataAccessAssembly).Assembly
+                };
+            container.Load(assemblies);
+            return container;
         }
 
-        private void RegisterShutdown(IAppBuilder appBuilder, ILifetimeScope container)
+        private void RegisterShutdown(IAppBuilder appBuilder, IKernel container)
         {
             var properties = new AppProperties(appBuilder.Properties);
             var token = properties.OnAppDisposing;
             if (token != CancellationToken.None)
             {
-                token.Register(() => UnityMvcActivator.Shutdown(container));
+                token.Register(() => this.Shutdown(container));
             }
         }
 
-        internal HttpConfiguration ConfigureWebApi(ILifetimeScope container)
+        private void Shutdown(IKernel container)
         {
-            var httpConfiguration = new HttpConfiguration
-            {
-                DependencyResolver = new Autofac.Integration.WebApi.AutofacWebApiDependencyResolver(container)
-            };
+            container.Dispose();
+        }
+
+        internal HttpConfiguration ConfigureWebApi(IKernel container)
+        {
+            var httpConfiguration = new HttpConfiguration();
 
             httpConfiguration.MapHttpAttributeRoutes();
 
@@ -95,7 +82,7 @@ namespace Kheper.Web
             return httpConfiguration;
         }
 
-        internal void ConfigureMvcRoutes(RouteCollection routes)
+        internal void ConfigureMvcRoutes(RouteCollection routes, IKernel container)
         {
             routes.MapMvcAttributeRoutes();
 
@@ -106,6 +93,8 @@ namespace Kheper.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            // DependencyResolver.SetResolver(new Ninject.Web.Mvc.NinjectDependencyResolver(container));
         }
     }
 }

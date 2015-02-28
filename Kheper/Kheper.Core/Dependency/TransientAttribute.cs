@@ -7,7 +7,7 @@ namespace Kheper.Core.Dependency
     {
         public TransientAttribute()
         {
-            Scope = ELifetimeScope.InstancePerDependency;
+            this.Scope = ELifetimeScope.Transient;
         }
     }
 }

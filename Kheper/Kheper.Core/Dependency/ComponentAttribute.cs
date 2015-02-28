@@ -8,6 +8,6 @@
     [AttributeUsage(AttributeTargets.Class)]
     public class ComponentAttribute : Attribute
     {
-        public EPrecedence Precedence { get; set; }
+        public EAutowiringPrecedence Precedence { get; set; }
     }
 }

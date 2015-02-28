@@ -4,7 +4,7 @@
     /// Defines the levels of precedence.
     /// A component with higher precedence overrides components registered with lower precedence.
     /// </summary>
-    public enum EPrecedence
+    public enum EAutowiringPrecedence
     {
         Unspecified = 0,
 

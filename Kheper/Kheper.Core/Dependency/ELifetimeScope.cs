@@ -3,12 +3,9 @@
     public enum ELifetimeScope
     {
         Unspecified = 0,
-        InstancePerDependency,
-        SingleInstance,
-        InstancePerLifetimeScope,
-        InstancePerMatchingLifetimeScope,
-        InstancePerRequest,
-        InstancePerOwned,
-        ThreadScope
+        Transient,
+        Singleton,
+        Request,
+        Thread
     }
 }

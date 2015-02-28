@@ -7,7 +7,7 @@
     {
         public SingletonAttribute()
         {
-            Scope = ELifetimeScope.SingleInstance;
+            this.Scope = ELifetimeScope.Singleton;
         }
     }
 }

@@ -1,24 +1,16 @@
 ﻿namespace Kheper.Web
 {
-    using System.Reflection;
-
-    using Autofac;
-
     using Kheper.Core.Dependency;
-    using Kheper.DataAccess;
 
-    public class ConfigurationModule : Autofac.Module
+    using Ninject.Modules;
+
+    public class ConfigurationModule : NinjectModule
     {
-        public EPrecedence Environment { get; set; }
+        public EAutowiringPrecedence Environment { get; set; }
 
-        protected override void Load(ContainerBuilder builder)
+        public override void Load()
         {
-            Assembly[] assemblies =
-                {
-                    Assembly.GetExecutingAssembly(),
-                    typeof(DataAccessAssembly).Assembly
-                };
-            builder.RegisterSource(new PreemptiveRegistrationSource(EPrecedence.Development, assemblies));
+            PreemptiveAutowiring.Extend(this.Kernel);
         }
     }
 }

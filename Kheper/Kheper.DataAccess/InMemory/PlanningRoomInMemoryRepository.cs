@@ -1,15 +1,13 @@
-﻿using Kheper.Core.Model;
-using Kheper.Core.Store;
-
-namespace Kheper.DataAccess.InMemory
+﻿namespace Kheper.DataAccess.InMemory
 {
     using System;
     using System.Collections.Generic;
-
+    using Kheper.Core.Model;
+    using Kheper.Core.Store;
     using Kheper.Core.Dependency;
 
     [Singleton]
-    [Component(Precedence = EPrecedence.Development)]
+    [Component(Precedence = EAutowiringPrecedence.Development)]
     public class PlanningRoomInMemoryRepository : AbstractInMemoryRepository<PlanningRoom, long>, IPlanningRoomRepository
     {
         private long lastId;

@@ -8,7 +8,7 @@
     using Kheper.Core.Store;
 
     [Singleton]
-    [Component(Precedence = EPrecedence.Development)]
+    [Component(Precedence = EAutowiringPrecedence.Development)]
     public class VotingSessionInMemoryRepository : AbstractInMemoryRepository<VotingSession, VotingSessionId>, IVotingSessionRepository
     {
         private long _lastId;
