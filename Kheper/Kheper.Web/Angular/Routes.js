@@ -45,6 +45,21 @@
                     controller: "RetroCtrl"
                 }
             }
+        }).state('kheper.voting', {
+            url: "/PlanningPoker",
+            views: {
+                "mainMenu": {
+                    templateUrl: 'Angular/Views/MainMenu.html',
+                    controller: "MainMenuCtrl"
+                },
+                "": {
+                    templateUrl: 'Angular/PlanningPoker/Views/Planning.html'
+                },
+
+                "footer": {
+                    templateUrl: 'Angular/Views/Footer.html',
+                }
+            }
 
         });
 
